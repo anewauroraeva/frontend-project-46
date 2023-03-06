@@ -7,5 +7,5 @@ program
   .version('0.1')
   .option('-f, --format <type>', 'output format')
   .arguments('<filepath1> <filepath2>');
-  
-  program.parse();
+
+program.parse();
