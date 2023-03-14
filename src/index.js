@@ -13,40 +13,38 @@ const genDiff = (filepath1, filepath2) => {
   const commonKeys = _.union(keys1, keys2);
   const sortedCommonKeys = _.sortBy(commonKeys);
 
+  // const differences = sortedCommonKeys.reduce((result, key) => {
+  //   const absentKeyInData1 = `- ${key}`;
+  //   const absentKeyInData2 = `+ ${key}`;
+  //   const sameKey = `  ${key}`;
+  //   if (!Object.hasOwn(parsedData1, key)) {
+  //     result[absentKeyInData2] = parsedData2[key];
+  //   } else if (!Object.hasOwn(parsedData2, key)) {
+  //     result[absentKeyInData1] = parsedData1[key];
+  //   } else if (parsedData1[key] !== parsedData2[key]) {
+  //     result[absentKeyInData1] = parsedData1[key];
+  //     result[absentKeyInData2] = parsedData2[key];
+  //   } else {
+  //     result[sameKey] = parsedData1[key];
+  //   }
+  //   return result;
+  // }, {});
+
   const differences = sortedCommonKeys.reduce((result, key) => {
-    const absentKeyInData1 = `- ${key}`;
-    const absentKeyInData2 = `+ ${key}`;
-    const sameKey = `  ${key}`;
     if (!Object.hasOwn(parsedData1, key)) {
-      result[absentKeyInData2] = parsedData2[key];
+      result.splice(result.length, 0, `  + ${key}: ${parsedData2[key]}`);
     } else if (!Object.hasOwn(parsedData2, key)) {
-      result[absentKeyInData1] = parsedData1[key];
+      result.splice(result.length, 0, `  - ${key}: ${parsedData1[key]}`);
     } else if (parsedData1[key] !== parsedData2[key]) {
-      result[absentKeyInData1] = parsedData1[key];
-      result[absentKeyInData2] = parsedData2[key];
+      result.splice(result.length, 0, `  - ${key}: ${parsedData1[key]}`);
+      result.splice(result.length, 0, `  + ${key}: ${parsedData2[key]}`);
     } else {
-      result[sameKey] = parsedData1[key];
+      result.splice(result.length, 0, `    ${key}: ${parsedData1[key]}`);
     }
     return result;
-  }, {});
-
-  // const differences = sortedCommonKeys.reduce((result, key) => {
-  //   if (!Object.hasOwn(parsedData1, key)) {
-  //     result.push(`+ ${key}: ${parsedData2[key]}`);
-  //   } else if (!Object.hasOwn(parsedData2, key)) {
-  //     result.push(`- ${key}: ${parsedData1[key]}`);
-  //   } else if (parsedData1[key] !== parsedData2[key]) {
-  //     result.push(`- ${key}: ${parsedData1[key]}`);
-  //     result.push(`+ ${key}: ${parsedData2[key]}`);
-  //   } else {
-  //     result.push(`  ${key}: ${parsedData1[key]}`);
-  //   }
-  //   console.log(result);
-  //   const strResult = result.join(',');
-  //   return strResult;
-  // }, []);
-
-  return differences;
+  }, []);
+  const strDiff = differences.join(',\n');
+  return `{\n${strDiff}\n}`;
 };
 
 // You need to return:
