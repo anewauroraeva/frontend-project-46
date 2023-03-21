@@ -1,7 +1,11 @@
+plugins:
+  - jest
 env:
   es2021: true
   node: true
-extends: airbnb-base
+extends: 
+  - 'airbnb-base'
+  - 'plugin:jest/recommended'
 overrides: []
 parserOptions:
   ecmaVersion: latest
@@ -12,3 +16,4 @@ rules:
    - error
    - ignorePackages
    - js: always
+  no-underscore-dangle: [2, { "allow": ["__filename", "__dirname"] }]
