@@ -5,5 +5,6 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - uses: actions/checkout@v3
+      - run: npm install --save-dev eslint-config-airbnb-base
       - run: make lint
 #      - run: make test
