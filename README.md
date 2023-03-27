@@ -6,3 +6,6 @@
 
 Compare 2 flat JSON files (step 3)
 [![asciicast](https://asciinema.org/a/567268.svg)](https://asciinema.org/a/567268)
+
+Compare 2 flat YAML files (step 5)
+[![asciicast](https://asciinema.org/a/570794.svg)](https://asciinema.org/a/570794)
