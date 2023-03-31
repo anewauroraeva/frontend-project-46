@@ -14,12 +14,12 @@ const filepath2 = getFixturePath('file2.json');
 const filepath3 = getFixturePath('filepath1.yml');
 const filepath4 = getFixturePath('filepath2.yml');
 
-const flatFile = readFileSync(path.resolve(process.cwd(), '__fixtures__/expectedFlatDiff.txt'), 'utf-8');
+const stylish = readFileSync(path.resolve(process.cwd(), '__fixtures__/expected-stylish.txt'), 'utf-8');
 
 test('JSON flat files', () => {
-  expect(genDiff(filepath1, filepath2)).toEqual(flatFile);
+  expect(genDiff(filepath1, filepath2)).toEqual(stylish);
 });
 
 test('YAML flat files', () => {
-  expect(genDiff(filepath3, filepath4)).toEqual(flatFile);
+  expect(genDiff(filepath3, filepath4)).toEqual(stylish);
 });
