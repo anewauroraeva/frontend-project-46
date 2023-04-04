@@ -2,6 +2,7 @@ import { readFileSync } from 'fs';
 import path from 'path';
 import parseFile from './parsers.js';
 import buildDiff from './buildDiff.js';
+import stylish from './formatters/stylish.js';
 
 const genDiff = (filepath1, filepath2) => {
   const fileData1 = readFileSync(path.resolve(process.cwd(), filepath1), 'utf-8');
@@ -9,7 +10,7 @@ const genDiff = (filepath1, filepath2) => {
   const parcedData1 = parseFile(filepath1, fileData1);
   const parcedData2 = parseFile(filepath2, fileData2);
 
-  return buildDiff(parcedData1, parcedData2);
+  return stylish(buildDiff(parcedData1, parcedData2));
 };
 
 export default genDiff;
