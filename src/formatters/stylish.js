@@ -12,7 +12,7 @@ const stringify = (value, replacer = '    ') => {
     return ['{', ...lines, `${bracketIndent}}`].join('\n');
   };
 
-  return iter(value, 0);
+  return iter(value, 1);
 };
 
 const stylish = (diff) => {
