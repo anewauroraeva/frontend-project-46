@@ -15,11 +15,20 @@ const filepath3 = getFixturePath('filepath1.yml');
 const filepath4 = getFixturePath('filepath2.yml');
 
 const stylish = readFileSync(path.resolve(process.cwd(), '__fixtures__/expected-stylish.txt'), 'utf-8');
+const plain = readFileSync(path.resolve(process.cwd(), '__fixtures__/expected-plain.txt'), 'utf-8');
 
-test('JSON flat files', () => {
+test('JSON files stylish', () => {
   expect(genDiff(filepath1, filepath2)).toEqual(stylish);
 });
 
-test('YAML flat files', () => {
+test('YAML files stylish', () => {
   expect(genDiff(filepath3, filepath4)).toEqual(stylish);
+});
+
+test('JSON files plain', () => {
+  expect(genDiff(filepath1, filepath2)).toEqual(plain);
+});
+
+test('YAML files plain', () => {
+  expect(genDiff(filepath3, filepath4)).toEqual(plain);
 });
