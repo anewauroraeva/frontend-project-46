@@ -26,9 +26,9 @@ test('YAML files stylish', () => {
 });
 
 test('JSON files plain', () => {
-  expect(genDiff(filepath1, filepath2)).toEqual(plain);
+  expect(genDiff(filepath1, filepath2, 'plain')).toEqual(plain);
 });
 
 test('YAML files plain', () => {
-  expect(genDiff(filepath3, filepath4)).toEqual(plain);
+  expect(genDiff(filepath3, filepath4, 'plain')).toEqual(plain);
 });
