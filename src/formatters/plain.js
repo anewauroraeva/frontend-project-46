@@ -10,19 +10,20 @@ const stringify = (value) => {
   return `${value}`;
 };
 
-const plain = (diff) => {
+const plain = (diff, path = '') => {
   const result = diff
     .filter((node) => node.type && node.type !== 'unchanged')
     .map((node) => {
+      const fullPath = path === '' ? `${node.key}` : `${path}.${node.key}`;
       switch (node.type) {
         case 'nested':
-          return plain(node.value);
+          return plain(node.value, fullPath);
         case 'added':
-          return `Property '${node.key}' was added with value: ${stringify(node.value)}`;
+          return `Property '${fullPath}' was added with value: ${stringify(node.value)}`;
         case 'deleted':
-          return `Property '${node.key}' was removed`;
+          return `Property '${fullPath}' was removed`;
         case 'changed':
-          return `Property '${node.key}' was updated. From ${stringify(node.value)} to ${stringify(node.value2)}`;
+          return `Property '${fullPath}' was updated. From ${stringify(node.value)} to ${stringify(node.value2)}`;
         default:
           return 'OOPS';
       }
