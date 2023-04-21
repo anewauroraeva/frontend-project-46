@@ -16,6 +16,7 @@ const filepath4 = getFixturePath('filepath2.yml');
 
 const stylish = readFileSync(path.resolve(process.cwd(), '__fixtures__/expected-stylish.txt'), 'utf-8');
 const plain = readFileSync(path.resolve(process.cwd(), '__fixtures__/expected-plain.txt'), 'utf-8');
+const json = readFileSync(path.resolve(process.cwd(), '__fixtures__/expected-json.txt'), 'utf-8');
 
 test('JSON files stylish', () => {
   expect(genDiff(filepath1, filepath2)).toEqual(stylish);
@@ -25,10 +26,30 @@ test('YAML files stylish', () => {
   expect(genDiff(filepath3, filepath4)).toEqual(stylish);
 });
 
+test('JSON and YAML files stylish', () => {
+  expect(genDiff(filepath1, filepath4)).toEqual(stylish);
+});
+
 test('JSON files plain', () => {
   expect(genDiff(filepath1, filepath2, 'plain')).toEqual(plain);
 });
 
 test('YAML files plain', () => {
   expect(genDiff(filepath3, filepath4, 'plain')).toEqual(plain);
+});
+
+test('JSON and YAML files plain', () => {
+  expect(genDiff(filepath1, filepath4, 'plain')).toEqual(plain);
+});
+
+test('JSON files json', () => {
+  expect(genDiff(filepath1, filepath2, 'json')).toEqual(json);
+});
+
+test('YAML files json', () => {
+  expect(genDiff(filepath3, filepath4, 'json')).toEqual(json);
+});
+
+test('JSON and YAML files json', () => {
+  expect(genDiff(filepath1, filepath4, 'json')).toEqual(json);
 });
