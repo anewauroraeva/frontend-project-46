@@ -17,15 +17,15 @@ const plain = (diff, path = '') => {
       const fullPath = path === '' ? `${node.key}` : `${path}.${node.key}`;
       switch (node.type) {
         case 'nested':
-          return plain(node.value, fullPath);
+          return plain(node.children, fullPath);
         case 'added':
           return `Property '${fullPath}' was added with value: ${stringify(node.value)}`;
         case 'deleted':
           return `Property '${fullPath}' was removed`;
         case 'changed':
-          return `Property '${fullPath}' was updated. From ${stringify(node.value)} to ${stringify(node.value2)}`;
+          return `Property '${fullPath}' was updated. From ${stringify(node.oldValue)} to ${stringify(node.newValue)}`;
         default:
-          return 'OOPS';
+          throw new Error('Oops, something went wrong!');
       }
     });
 
