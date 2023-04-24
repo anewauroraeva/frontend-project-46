@@ -1,4 +1,4 @@
-install:
+install-deps:
 	npm ci
 
 test:
