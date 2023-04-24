@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 const buildDiff = (data1, data2) => {
   const keys = _.sortBy(_.union(_.keys(data1), _.keys(data2)));
-  const diff = keys.flatMap((key) => {
+  const diff = keys.map((key) => {
     if (!Object.hasOwn(data1, key)) {
       return { key, type: 'added', value: data2[key] };
     }
@@ -10,10 +10,10 @@ const buildDiff = (data1, data2) => {
       return { key, type: 'deleted', value: data1[key] };
     }
     if (_.isObject(data1[key]) && _.isObject(data2[key])) {
-      return { key, type: 'nested', value: buildDiff(data1[key], data2[key]) };
+      return { key, type: 'nested', children: buildDiff(data1[key], data2[key]) };
     }
     return data1[key] === data2[key] ? { key, type: 'unchanged', value: data1[key] } : {
-      key, type: 'changed', value: data1[key], value2: data2[key],
+      key, type: 'changed', oldValue: data1[key], newValue: data2[key],
     };
   });
 
