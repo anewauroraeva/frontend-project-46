@@ -11,7 +11,7 @@ Generates differences between two files. Supporting formats: JSON, YML, YAML.
 ### Installation
 1. Clone the repository https://github.com/anewauroraeva/frontend-project-46
 2. Go to repository directory `cd frontend-project-46`
-3. Install dependencies `make install`
+3. Install dependencies `make install-deps`
 4. Install the package `npm link`
 
 ### Run tests
