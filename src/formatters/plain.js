@@ -25,7 +25,7 @@ const plain = (diff, path = '') => {
         case 'changed':
           return `Property '${fullPath}' was updated. From ${stringify(node.oldValue)} to ${stringify(node.newValue)}`;
         default:
-          throw new Error('Oops, something went wrong!');
+          throw new Error(`Type '${node.type}' is not supported.`);
       }
     });
 

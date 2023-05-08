@@ -29,7 +29,7 @@ const stylish = (diff) => {
       case 'changed':
         return `${indent}  - ${node.key}: ${stringify(node.oldValue, depth + 1)}\n${indent}  + ${node.key}: ${stringify(node.newValue, depth + 1)}`;
       default:
-        throw new Error('Oops, something went wrong!');
+        throw new Error(`Type '${node.type}' is not supported.`);
     }
   });
 

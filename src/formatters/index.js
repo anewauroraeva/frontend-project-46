@@ -11,7 +11,7 @@ const format = (diff, formatName = 'stylish') => {
     case 'stylish':
       return stylish(diff);
     default:
-      throw new Error('Oops, something went wrong! Try supported format.');
+      throw new Error(`Format '${formatName}' is not suppported.`);
   }
 };
 
