@@ -1,14 +1,14 @@
 import yaml from 'js-yaml';
 
-const parseFile = (fileData, fileExt) => {
-  switch (fileExt) {
+const parseFile = (data, ext) => {
+  switch (ext) {
     case '.json':
-      return JSON.parse(fileData);
+      return JSON.parse(data);
     case '.yaml':
     case '.yml':
-      return yaml.load(fileData);
+      return yaml.load(data);
     default:
-      throw new Error('Unknown extention');
+      throw new Error(`Extention ${ext} is not supported.`);
   }
 };
 
